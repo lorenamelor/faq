@@ -1,0 +1,51 @@
+/*header*/
+
+.nav-bar {
+    height: 125px;
+    border-bottom: 1px solid #dedede;
+}
+
+.logo {
+    width: 40%;
+    min-width: 180px;
+    padding-top: 25px;
+    padding-left: 5px;
+}
+
+.buscar{
+    margin-top: 44px;
+}
+
+.glyphicon{
+    position: initial !important;
+}
+
+.input-group-addon {
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #253F50;
+    border: 1px solid #253F50;
+}
+
+.input-group-lg>.form-control, .input-group-lg>.input-group-addon, .input-group-lg>.input-group-btn>.btn {
+    padding: 10px 28px;
+}
+
+.form-control{
+    border: 1px solid #253F50;
+}
+
+/* body*/
+
+h1{
+    text-align: center;
+    margin: 40px 0 40px;
+}
+
+.box-categorias{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    width: 100%;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 3px;
+}
