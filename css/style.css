@@ -23,8 +23,8 @@
 .input-group-addon {
     padding: 6px 12px;
     color: #fff;
-    background-color: #253F50;
-    border: 1px solid #253F50;
+    background-color: #0D5E79;
+    border: 1px solid #0D5E79;
 }
 
 .input-group-lg>.form-control, .input-group-lg>.input-group-addon, .input-group-lg>.input-group-btn>.btn {
@@ -32,20 +32,68 @@
 }
 
 .form-control{
-    border: 1px solid #253F50;
+    border: 1px solid #0D5E79;
 }
 
-/* body*/
+/*body*/
 
 h1{
     text-align: center;
     margin: 40px 0 40px;
 }
 
+.btn-padrao{
+    background-color: #0D5E79;
+    color: #fff;
+}
+
+.btn-padrao.btn-artigo{
+
+    font-size: 16px;
+    margin-left: 82px;
+    margin-bottom: 15px;
+    width: 134px;
+    height: 40px;
+}
+
+
+/* box de categorias */
 .box-categorias{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
     width: 100%;
     display: inline-block;
     background-color: #fff;
-    border-radius: 3px;
+    margin-bottom: 30px;
 }
+
+.box-categorias .titulo-categoria{
+    color: #fff;
+    font-size: 20px;
+    padding: 7px;
+    text-transform: uppercase;
+    background-image: -webkit-linear-gradient(left, #233f51, #007292);
+    background-image: -moz-linear-gradient(left, #233f51, #007292);
+    background-image: -ms-linear-gradient(left, #233f51, #007292);
+    background-image: -o-linear-gradient(left, #233f51, #007292);
+    background-image: linear-gradient(to right, #233f51, #007292);
+}
+
+.box-categorias .corpo-categoria{
+    font-size: 16px;
+    color: #484848;
+    padding: 7px;
+    padding-left: 25px;
+    border-top: 1px solid #dbd8d8;
+}
+
+.select-categorias{
+         padding-left: 0px !important; 
+}
+
+.btn-padrao.btn-categoria{
+    font-size: 21px;
+    margin-bottom: 15px;
+    padding: 1px;
+    width: 30px;
+}
+
