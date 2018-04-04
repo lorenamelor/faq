@@ -1,4 +1,4 @@
-angular.module("faq").controller("duvidasController", function ($scope) {
+angular.module("faq").controller("administradorController", function ($scope) {
 
     $scope.duvidas = [{
             categoria: "Compra e Venda",
@@ -28,27 +28,32 @@ angular.module("faq").controller("duvidasController", function ($scope) {
         },
     ];
 
-    $scope.adicionarDuvida = function (pergunta, category) {
+    $scope.adicionarDuvida = function (pergunta, categorias) {
+        console.log($scope.duvidas);
+
         for (i = 0; i < $scope.duvidas.length; i++) {
-            if ($scope.duvidas[i].categoria == category.categoria) {
-                $scope.duvidas[i].perguntas.push(angular.copy(pergunta))
-                delete pergunta;
-                $scope.limparForm();
+            if ($scope.duvidas[i].categoria == categorias.categoria) {
+                if ($scope.duvidas[i].perguntas) {
+                    $scope.duvidas[i].perguntas.push(angular.copy(pergunta))
+                } else {
+                    $scope.duvidas[i].perguntas = [];
+                    $scope.duvidas[i].perguntas.push(angular.copy(pergunta))
+                }
             }
         }
+        $scope.limparForm();
     }
 
-    // $scope.adicionarCategoria = function (categoria) {
-    //     console.log('oi');
-    //     $scope.duvidas.push(angular.copy(categoria))
-    //     for (i = 0; i < $scope.duvidas.length; i++) {
-    //         if ($scope.duvidas[i].categoria == categoria.categoria) {
-    //             $scope.duvidas[i].push(perguntas[]);
-    //         }
-    //     }
-    //     delete categoria;
-    //     $scope.limparForm();
-    // }
+    $scope.adicionarCategoria = function (categoria) {
+        $scope.duvidas.push(angular.copy(categoria))
+        delete categoria;
+        $scope.limparForm();
+    }
+
+    $scope.limparForm = function () {
+        delete $scope.perguntas;
+        delete $scope.categorias;
+    }
 
     $scope.apagarDuvida = function (categoria, question) {
 
@@ -63,16 +68,7 @@ angular.module("faq").controller("duvidasController", function ($scope) {
         }
     }
 
-    $scope.limparForm = function () {
-
-        if ($("#categoria") != "") {
-            $("#categoria").val("");
-        } else {
-            $("#categoria").val("");
-            $("#pergunta").val("");
-            $("#resposta").val("");
-        }
-    }
+ 
 
 
 

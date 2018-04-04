@@ -1,0 +1,100 @@
+   
+    <body ng-controller="administradorController">
+        <h1>Como podemos ajudá-lo?</h1>
+    
+        <div class="row">
+            <div class="col-md-offset-8 col-md-2">
+                <button class="btn btn-padrao btn-artigo" data-toggle="modal" data-target="#novoArtigo">
+                    <i class="glyphicon glyphicon-pencil"></i> Novo artigo</button>
+            </div>
+        </div>
+    
+        <!--modal novo artigo-->
+        <div class="modal fade" id="novoArtigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="exampleModalLabel">Novo Artigo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="novaDuvida">
+                            <div class="form-group ">
+                                <div>
+                                    <label for="recipient-name" class="control-label">Categoria</label>
+                                </div>
+                                <div class="col-md-11 select-categorias">
+                                    <select class="form-control" ng-model="categorias" ng-options="cat.categoria for cat in duvidas" id="categoria" ng-required="true">
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <button class="btn btn-padrao btn-categoria" data-toggle="modal" data-target="#novaCategoria">+</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Pergunta</label>
+                                <input type="text" class="form-control" ng-model="perguntas.pergunta" id="pergunta" ng-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">Resposta</label>
+                                <textarea class="form-control" ng-model="perguntas.resposta" id="resposta" ng-required="true"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-padrao" ng-click="adicionarDuvida(perguntas,categorias)" ng-disabled="novaDuvida.$invalid">Criar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!--Modal nova categoria-->
+    
+        <div class="modal fade bs-example-modal-sm" id="novaCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Nova Categoria</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Categoria</label>
+                                <input type="text" class="form-control" ng-model="categoria.categoria" id="nomeCategoria">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-padrao" ng-click="adicionarCategoria(categoria)">Criar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!--fim Modal novo artigo-->
+    
+        <!--Container de categorias-->
+        <div class="container">
+            <div class="box-container col-md-6" ng-repeat="modalidade in duvidas | filter:busca">
+                <div class="box-categorias">
+                    <div class="titulo-categoria">{{modalidade.categoria}}</div>
+                    <div class="col-md-12 corpo-categoria" ng-repeat="question in modalidade.perguntas  | filter:busca" style=" vertical-align: middle;">
+                        <div class="col-md-11">
+                            <a href="#" ng-model="question">{{question.pergunta}}</a>
+                        </div>
+                        <div class="col-md-1">
+                            <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(modalidade.categoria, question)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fim Container de categorias-->
+    </body>
