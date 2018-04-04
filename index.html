@@ -110,8 +110,7 @@
                         </div>
                     </form>
                 </div>
-                {{categoria}}
-                {{duvidas}}
+                {{categoria}} {{duvidas}}
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-padrao" ng-click="adicionarCategoria(categoria)">Criar</button>
@@ -127,7 +126,14 @@
         <div class="box-container col-md-6" ng-repeat="modalidade in duvidas | filter:busca">
             <div class="box-categorias">
                 <div class="titulo-categoria">{{modalidade.categoria}}</div>
-                <div class="corpo-categoria" ng-repeat="question in modalidade.perguntas">{{question.pergunta}}</div>
+                <div class="col-md-12 corpo-categoria" ng-repeat="question in modalidade.perguntas" style=" vertical-align: middle;">
+                    <div class="col-md-11">
+                        <span ng-model="question">{{question.pergunta}}</span>
+                    </div>
+                    <div class="col-md-1">
+                        <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(modalidade.categoria, question)"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

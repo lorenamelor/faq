@@ -50,6 +50,30 @@ angular.module("faq").controller("duvidasController", function ($scope) {
     //     $scope.limparForm();
     // }
 
+    $scope.apagarDuvida = function (categoria, question) {
+        console.log('oi');
+
+        for (i = 0; i < $scope.duvidas.length; i++) {     
+            if ($scope.duvidas[i].categoria == categoria) {
+                $scope.duvidas[i].perguntas = $scope.duvidas[i].perguntas.filter(function (question) {
+                    if (!question.pergunta) return question;
+                })
+                
+            }
+        }
+
+
+        // var index = $scope.datas.indexOf("Como comprar bitcoin?");
+        // $scope.datas.splice(index, 1);
+
+        // if (duvidas.categoria == categoria) {
+        //     duvidas.perguntas = duvidas.filter(function (question) {
+        //             if (!question) return question;
+        //     })
+        // }
+
+    }
+
     $scope.limparForm = function () {
 
         if ($("#categoria") != "") {
