@@ -42,12 +42,13 @@ angular.module("faq").controller("administradorController", function ($scope) {
             }
         }
         $scope.limparForm();
+        $('#modalArtigo').modal('hide');
     }
 
     $scope.adicionarCategoria = function (categoria) {
         $scope.duvidas.push(angular.copy(categoria))
-        delete categoria;
         $scope.limparForm();
+        $('#modalCategoria').modal('hide');
     }
 
     $scope.limparForm = function () {
@@ -67,9 +68,4 @@ angular.module("faq").controller("administradorController", function ($scope) {
             }
         }
     }
-
- 
-
-
-
 })

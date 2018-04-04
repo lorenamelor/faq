@@ -9,6 +9,11 @@ angular.module("faq",["ngRoute"]).config(function($routeProvider, $locationProvi
         controller: "administradorController"
     })
 
+    .when("/respostas/:question",{
+        templateUrl: "views/respostas.html",
+        controller: "administradorController"
+    })
+
     .otherwise({redirectTo:"/administrador"})
 
     $locationProvider.html5Mode(true);

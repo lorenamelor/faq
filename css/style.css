@@ -126,3 +126,23 @@ a:active {
     padding: 1px;
     width: 30px;
 }
+
+/*Pagina de resposta*/
+
+.cabecalho-pergunta{
+    border-bottom: 1px solid #dedede;
+    padding: 20px;
+}
+.titulo-pergunta{
+    font-size: 30px;
+}
+
+.corpo-resposta{
+    font-size: 18px;
+    color: #878787;
+    padding: 20px 60px;
+}
+
+.btn-padrao.btn-editar-pergunta{
+    font-size: 16px;
+}

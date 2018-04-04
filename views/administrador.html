@@ -1,16 +1,16 @@
    
-    <body ng-controller="administradorController">
+    <div>
         <h1>Como podemos ajudá-lo?</h1>
     
         <div class="row">
             <div class="col-md-offset-8 col-md-2">
-                <button class="btn btn-padrao btn-artigo" data-toggle="modal" data-target="#novoArtigo">
+                <button class="btn btn-padrao btn-artigo" data-toggle="modal" data-target="#modalArtigo">
                     <i class="glyphicon glyphicon-pencil"></i> Novo artigo</button>
             </div>
         </div>
     
         <!--modal novo artigo-->
-        <div class="modal fade" id="novoArtigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal fade" id="modalArtigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -30,7 +30,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <button class="btn btn-padrao btn-categoria" data-toggle="modal" data-target="#novaCategoria">+</button>
+                                    <button type="button" class="btn btn-padrao btn-categoria" data-toggle="modal" data-target="#modalCategoria">+</button>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -53,7 +53,7 @@
     
         <!--Modal nova categoria-->
     
-        <div class="modal fade bs-example-modal-sm" id="novaCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal fade bs-example-modal-sm" id="modalCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -63,16 +63,16 @@
                         <h4 class="modal-title">Nova Categoria</h4>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form name="novaCategoria">
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Categoria</label>
-                                <input type="text" class="form-control" ng-model="categoria.categoria" id="nomeCategoria">
+                                <input type="text" class="form-control" ng-model="categoria.categoria" id="nomeCategoria" ng-required="true">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-padrao" ng-click="adicionarCategoria(categoria)">Criar</button>
+                        <button type="button" class="btn btn-padrao" ng-click="adicionarCategoria(categoria)" ng-disabled="novaCategoria.$invalid">Criar</button>
                     </div>
                 </div>
             </div>
@@ -82,19 +82,19 @@
     
         <!--Container de categorias-->
         <div class="container">
-            <div class="box-container col-md-6" ng-repeat="modalidade in duvidas | filter:busca">
-                <div class="box-categorias">
-                    <div class="titulo-categoria">{{modalidade.categoria}}</div>
-                    <div class="col-md-12 corpo-categoria" ng-repeat="question in modalidade.perguntas  | filter:busca" style=" vertical-align: middle;">
+            <div class="box-container col-md-6" ng-repeat="categorias in duvidas | filter:busca" >
+                <div class="box-categorias" ng-if="categorias.perguntas.length > 0">
+                    <div class="titulo-categoria">{{categorias.categoria}}</div>
+                    <div class="col-md-12 corpo-categoria" ng-repeat="question in categorias.perguntas  | filter:busca" >
                         <div class="col-md-11">
-                            <a href="#" ng-model="question">{{question.pergunta}}</a>
+                            <a href="/respostas/{{question.pergunta}}" ng-model="question" >{{question.pergunta}}</a>
                         </div>
                         <div class="col-md-1">
-                            <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(modalidade.categoria, question)"></i>
+                            <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(categorias.categoria, question)"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--Fim Container de categorias-->
-    </body>
+    </div>
