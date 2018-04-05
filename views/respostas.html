@@ -4,8 +4,46 @@
            Como comprar comprar bitcoin?
         </div>
         <div class="col-md-1">
-            <button class="btn btn-padrao btn-editar-pergunta">Editar</button>
+            <button class="btn btn-padrao btn-editar-pergunta" data-toggle="modal" data-target="#modalArtigo">Editar</button>
         </div>
+
+        <div class="modal fade" id="modalArtigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="exampleModalLabel">Novo Artigo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form name="novaDuvida">
+                                <div class="form-group ">
+                                    <div>
+                                        <label for="recipient-name" class="control-label">Categoria</label>
+                                    </div>
+                                    <div class=" select-categorias">
+                                        <select class="form-control" ng-model="categorias" ng-options="cat.categoria for cat in duvidas" id="categoria" ng-required="true">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Pergunta</label>
+                                    <input type="text" class="form-control" ng-model="perguntas.pergunta" id="pergunta" ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-text" class="control-label">Resposta</label>
+                                    <textarea class="form-control" ng-model="perguntas.resposta" id="resposta" ng-required="true"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-padrao" ng-click="adicionarDuvida(perguntas,categorias)" ng-disabled="novaDuvida.$invalid">Criar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
     <div class="corpo-resposta col-md-12">
         Para comprar moedas digitais é muito simples, e temos duas formas de faze-lo: por meio do Livro de Ordens ou pela Compra

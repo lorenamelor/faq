@@ -1,48 +1,29 @@
-angular.module("faq").controller("administradorController", function ($scope) {
+app.controller("administradorController", function ($scope, Admin) {
 
-    $scope.duvidas = [{
-            categoria: "Compra e Venda",
-            perguntas: [{
-                pergunta: " Como comprar bitcoin?",
-                resposta: "bla bla bla"
-            }, {
-                pergunta: " Como Vender bitcoin?",
-                resposta: "bla bla bla"
-            }, {
-                pergunta: "Quanto tempo leva para concluir uma venda??",
-                resposta: "bla bla bla"
-            }]
-        },
-        {
-            categoria: "Limites e prazos",
-            perguntas: [{
-                pergunta: "Quanto tempo leva para um depósito em reais ser concluído?",
-                resposta: "bla bla bla"
-            }, {
-                pergunta: "Existe um mínimo de moedas digitais que eu posso comprar?",
-                resposta: "bla bla bla"
-            }, {
-                pergunta: "Quanto tempo leva para concluir um saque em reais?",
-                resposta: "bla bla bla"
-            }]
-        },
-    ];
 
-    $scope.adicionarDuvida = function (pergunta, categorias) {
-        console.log($scope.duvidas);
+    $scope.listDuvida = function () {
+        Admin.buscaQuestoes().success(function (data) {
+            $scope.duvidas = data;
+        })
+    }
 
-        for (i = 0; i < $scope.duvidas.length; i++) {
-            if ($scope.duvidas[i].categoria == categorias.categoria) {
-                if ($scope.duvidas[i].perguntas) {
-                    $scope.duvidas[i].perguntas.push(angular.copy(pergunta))
-                } else {
-                    $scope.duvidas[i].perguntas = [];
-                    $scope.duvidas[i].perguntas.push(angular.copy(pergunta))
-                }
-            }
-        }
-        $scope.limparForm();
-        $('#modalArtigo').modal('hide');
+    $scope.listCategoria = function () {
+        Admin.buscaCategorias().success(function (data) {
+            $scope.categorias = data;
+        })
+    }
+
+
+    $scope.adicionarDuvida = function (pergunta) {
+
+        $scope.duvidas.push(angular.copy(pergunta))
+        console.log(pergunta)
+        Admin.addPergunta(pergunta).success(function (data) {
+            console.log(data);
+            $scope.limparForm();
+            $('#modalArtigo').modal('hide');
+            console.log(pergunta);
+        })
     }
 
     $scope.adicionarCategoria = function (categoria) {

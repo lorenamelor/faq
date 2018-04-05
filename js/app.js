@@ -1,6 +1,6 @@
-angular.module("faq",[]);
+var app = angular.module("faq",['ngRoute']);
 
-angular.module("faq",["ngRoute"]).config(function($routeProvider, $locationProvider){
+app.config(function($routeProvider, $locationProvider){
 
     $routeProvider
 

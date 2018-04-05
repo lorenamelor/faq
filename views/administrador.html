@@ -1,5 +1,5 @@
    
-    <div>
+    <div class="container">
         <h1>Como podemos ajudá-lo?</h1>
     
         <div class="row">
@@ -25,8 +25,9 @@
                                 <div>
                                     <label for="recipient-name" class="control-label">Categoria</label>
                                 </div>
-                                <div class="col-md-11 col-sm-11 col-xs-10 select-categorias">
-                                    <select class="form-control" ng-model="categorias" ng-options="cat.categoria for cat in duvidas" id="categoria" ng-required="true">
+                                <div class="col-md-11 col-sm-11 col-xs-10 select-categorias" ng-init="listCategoria();">
+                                    <select class="form-control" ng-model="pergunta.idCategoria"  id="idCategoria" ng-required="true">
+                                        <option ng-repeat="categoria in categorias track by $index" value="{{categoria.id}}">{{categoria.nome}}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-1 col-sm-1 col-xs-2">
@@ -35,17 +36,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Pergunta</label>
-                                <input type="text" class="form-control" ng-model="perguntas.pergunta" id="pergunta" ng-required="true">
+                                <input type="text" class="form-control" ng-model="pergunta.textoPergunta" id="textoPergunta" ng-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="control-label">Resposta</label>
-                                <textarea class="form-control" ng-model="perguntas.resposta" id="resposta" ng-required="true"></textarea>
+                                <textarea class="form-control" ng-model="pergunta.textoResposta" id="textoResposta" ng-required="true"></textarea>
                             </div>
                         </form>
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-padrao" ng-click="adicionarDuvida(perguntas,categorias)" ng-disabled="novaDuvida.$invalid">Criar</button>
+                        <button type="button" class="btn btn-padrao" ng-click="adicionarDuvida(pergunta)" ng-disabled="novaDuvida.$invalid">Criar</button>
                     </div>
                 </div>
             </div>
@@ -79,15 +81,15 @@
         </div>
     
         <!--fim Modal novo artigo-->
-    
+
         <!--Container de categorias-->
-        <div class="container">
-            <div class="box-container col-md-6" ng-repeat="categorias in duvidas | filter:busca" >
-                <div class="box-categorias" ng-if="categorias.perguntas.length > 0">
-                    <div class="titulo-categoria">{{categorias.categoria}}</div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="question in categorias.perguntas  | filter:busca" >
-                        <div class="col-md-11 col-sm-11 col-xs-10 ">
-                            <a href="/respostas/{{question.pergunta}}" ng-model="question" >{{question.pergunta}}</a>
+        <div class="container" ng-init="listDuvida(); listCategoria();">
+            <div class="box-container col-md-6" ng-repeat="cat in categorias | filter:busca track by $index " >
+                <div class="box-categorias" ng-if="categorias.length > 0">
+                    <div class="titulo-categoria">{{cat.nome}}</div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="question in duvidas | filter:busca track by $index " ng-if="question.idCategoria == cat.id">
+                        <div class="col-md-11 col-sm-11 col-xs-10" >
+                            <a href="/respostas/{{question.pergunta}}" ng-model="question" >{{question.textoPergunta}}</a>
                         </div>
                         <div class="col-md-1 col-sm-1 col-xs-2  ">
                             <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(categorias.categoria, question)"></i>
@@ -98,3 +100,4 @@
         </div>
         <!--Fim Container de categorias-->
     </div>
+{{pergunta}}
