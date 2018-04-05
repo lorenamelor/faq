@@ -3,7 +3,7 @@
         <h1>Como podemos ajudá-lo?</h1>
     
         <div class="row">
-            <div class="col-md-offset-8 col-md-2">
+            <div class="container" style="padding-right: 30px">
                 <button class="btn btn-padrao btn-artigo" data-toggle="modal" data-target="#modalArtigo">
                     <i class="glyphicon glyphicon-pencil"></i> Novo artigo</button>
             </div>
@@ -25,11 +25,11 @@
                                 <div>
                                     <label for="recipient-name" class="control-label">Categoria</label>
                                 </div>
-                                <div class="col-md-11 select-categorias">
+                                <div class="col-md-11 col-sm-11 col-xs-10 select-categorias">
                                     <select class="form-control" ng-model="categorias" ng-options="cat.categoria for cat in duvidas" id="categoria" ng-required="true">
                                     </select>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-1 col-sm-1 col-xs-2">
                                     <button type="button" class="btn btn-padrao btn-categoria" data-toggle="modal" data-target="#modalCategoria">+</button>
                                 </div>
                             </div>
@@ -85,11 +85,11 @@
             <div class="box-container col-md-6" ng-repeat="categorias in duvidas | filter:busca" >
                 <div class="box-categorias" ng-if="categorias.perguntas.length > 0">
                     <div class="titulo-categoria">{{categorias.categoria}}</div>
-                    <div class="col-md-12 corpo-categoria" ng-repeat="question in categorias.perguntas  | filter:busca" >
-                        <div class="col-md-11">
+                    <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="question in categorias.perguntas  | filter:busca" >
+                        <div class="col-md-11 col-sm-11 col-xs-10 ">
                             <a href="/respostas/{{question.pergunta}}" ng-model="question" >{{question.pergunta}}</a>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1 col-sm-1 col-xs-2  ">
                             <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(categorias.categoria, question)"></i>
                         </div>
                     </div>
