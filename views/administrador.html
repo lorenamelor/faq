@@ -82,8 +82,8 @@
     <!--fim Modal novo artigo-->
 
     <!--Container de categorias-->
-    <div class="container" ng-init="listDuvida(); listCategoria();">
-        <div class="box-container col-md-6" ng-repeat="cat in categorias | filter:busca track by $index">
+    <div class="container" ng-init="listCategoriasPerguntas(); listDuvida();">
+        <div class="box-container col-md-6" ng-repeat="cat in categoriasPerguntas | filter:busca track by $index">
             <div class="box-categorias">
                 <div class="titulo-categoria col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-11 col-sm-11 col-xs-10">
@@ -93,13 +93,12 @@
                         <i class="glyphicon glyphicon-remove remove-categoria" ng-click="apagarCategoria(cat)"></i>
                     </div>
                 </div>
-                <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="pergunta in duvidas | filter:busca track by $index "
-                    ng-if="pergunta.idCategoria == cat.id">
+                <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="perg in cat.conteudo | filter:busca track by $index">
                     <div class="col-md-11 col-sm-11 col-xs-10">
-                        <a href="/respostas/{{pergunta.id}}" ng-model="question">{{pergunta.textoPergunta}}</a>
+                        <a href="/respostas/{{pergunta.id}}" ng-model="question">{{perg.textoPergunta}}</a>
                     </div>
                     <div class="col-md-1 col-sm-1 col-xs-2  ">
-                        <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(pergunta)"></i>
+                        <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(perg)"></i>
                     </div>
                 </div>
             </div>

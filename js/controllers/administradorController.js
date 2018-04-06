@@ -9,12 +9,13 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
     }
 
     $scope.adicionarDuvida = function (pergunta) {
-        $scope.duvidas.push(angular.copy(pergunta))
+       
 
         Admin.addPergunta(pergunta).success(function (data) {
             $scope.limparForm();
             $('#modalArtigo').modal('hide');
         })
+        $scope.duvidas.push(angular.copy(pergunta))
     }
 
     $scope.apagarDuvida = function (pergunta) {
@@ -59,12 +60,12 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
 
     /*Outros*/
 
-    // $scope.listCategoriasPerguntas = function(data){
+    $scope.listCategoriasPerguntas = function(){
+        Admin.buscaCategoriaPerguntas().success(function(data){
 
-    //     Admin.buscaCategoriaPerguntas().success(function(){
-    //         $scope.categoriasPerguntas = data;
-    //     })
-    // }
+            $scope.categoriasPerguntas = data.result;
+        })
+    }
 
     $scope.limparForm = function () {
         delete $scope.pergunta;

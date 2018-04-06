@@ -25,7 +25,7 @@ app.service("Admin", function ($http, $routeParams) {
     }
 
     this.buscaCategoriaPerguntas = function(){
-        return $http.get('http://localhost:4000/conteudo/categoriaPergunta')
+        return $http.get('http://172.16.10.111:4000/conteudo/categoriaPergunta')
     }
 
 })
