@@ -1,52 +1,73 @@
-app.controller("administradorController", function ($scope, Admin) {
+app.controller("administradorController", function ($scope, Admin, $routeParams) {
 
 
+    /**Duvidas */
     $scope.listDuvida = function () {
-        Admin.buscaQuestoes().success(function (data) {
+        Admin.buscaPerguntas().success(function (data) {
             $scope.duvidas = data;
         })
     }
 
+    $scope.adicionarDuvida = function (pergunta) {
+        $scope.duvidas.push(angular.copy(pergunta))
+
+        Admin.addPergunta(pergunta).success(function (data) {
+            $scope.limparForm();
+            $('#modalArtigo').modal('hide');
+        })
+    }
+
+    $scope.apagarDuvida = function (pergunta) {
+        Admin.deletePergunta(pergunta).success(function () {
+            var index = $scope.duvidas.indexOf(pergunta);
+            $scope.duvidas.splice(index, 1);
+        })
+    }
+
+
+    /*categorias*/
     $scope.listCategoria = function () {
         Admin.buscaCategorias().success(function (data) {
             $scope.categorias = data;
         })
     }
 
+    $scope.adicionarCategoria = function (categoria) {
+        $scope.categorias.push(angular.copy(categoria))
 
-    $scope.adicionarDuvida = function (pergunta) {
-
-        $scope.duvidas.push(angular.copy(pergunta))
-        console.log(pergunta)
-        Admin.addPergunta(pergunta).success(function (data) {
-            console.log(data);
+        Admin.addCategoria(categoria).success(function (data) {
             $scope.limparForm();
-            $('#modalArtigo').modal('hide');
-            console.log(pergunta);
+            $('#modalCategoria').modal('hide');
         })
     }
 
-    $scope.adicionarCategoria = function (categoria) {
-        $scope.duvidas.push(angular.copy(categoria))
-        $scope.limparForm();
-        $('#modalCategoria').modal('hide');
+    $scope.apagarCategoria = function (categoria) {
+        Admin.deleteCategoria(categoria).success(function () {
+            var index = $scope.categorias.indexOf(categoria);
+            $scope.categorias.splice(index, 1);
+        })
     }
+
+
+
+    /*Respostas*/
+    $scope.listResposta = function (pergunta) {
+        Admin.buscaPerguntas(pergunta).success(function () {
+            console.log('ok');
+        })
+    }
+
+    /*Outros*/
+
+    // $scope.listCategoriasPerguntas = function(data){
+
+    //     Admin.buscaCategoriaPerguntas().success(function(){
+    //         $scope.categoriasPerguntas = data;
+    //     })
+    // }
 
     $scope.limparForm = function () {
-        delete $scope.perguntas;
-        delete $scope.categorias;
-    }
-
-    $scope.apagarDuvida = function (categoria, question) {
-
-        for (i = 0; i < $scope.duvidas.length; i++) {
-            if ($scope.duvidas[i].categoria == categoria) {
-                for (j = 0; j < $scope.duvidas[i].perguntas.length; j++) {
-                    if ($scope.duvidas[i].perguntas[j] == question) {
-                        $scope.duvidas[i].perguntas.splice(j, 1);
-                    }
-                }
-            }
-        }
+        delete $scope.pergunta;
+        delete $scope.categoria;
     }
 })

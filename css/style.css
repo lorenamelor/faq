@@ -79,6 +79,18 @@ a:active {
     
 }
 
+
+@media only screen and (max-width: 600px) {
+    .adicionar-artigo{
+       text-align: center;
+    }
+
+    .btn-padrao.btn-artigo {
+        float: none;
+    }
+
+}
+
 /* box de categorias */
 
 .box-categorias {
@@ -115,6 +127,9 @@ a:active {
     vertical-align: middle;
 }
 
+.glyphicon-remove.remove-categoria{
+    color: #333333 !important;
+}
 /*Modais adicionar*/
 
 .select-categorias {

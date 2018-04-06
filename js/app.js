@@ -9,7 +9,7 @@ app.config(function($routeProvider, $locationProvider){
         controller: "administradorController"
     })
 
-    .when("/respostas/:question",{
+    .when("/respostas/:perguntaId",{
         templateUrl: "views/respostas.html",
         controller: "administradorController"
     })

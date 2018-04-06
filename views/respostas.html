@@ -1,13 +1,15 @@
-<div>
-    <div class="cabecalho-pergunta col-md-12">
-        <div class="titulo-pergunta col-md-11">
-           Como comprar comprar bitcoin?
-        </div>
-        <div class="col-md-1">
-            <button class="btn btn-padrao btn-editar-pergunta" data-toggle="modal" data-target="#modalArtigo">Editar</button>
-        </div>
+<div ng-init="listDuvida();">
+    <div ng-repeat="pergunta in duvidas track by $index" ng-if="pergunta.id == $routeParams">
+        <div class="cabecalho-pergunta col-md-12">
+            <div class="titulo-pergunta col-md-11">
+                {{pergunta.textoPergunta}}
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-padrao btn-editar-pergunta" data-toggle="modal" data-target="#modalArtigo">Editar</button>
+            </div>
 
-        <div class="modal fade" id="modalArtigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <!--Modal Editar-->
+            <div class="modal fade" id="modalArtigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -44,12 +46,10 @@
                     </div>
                 </div>
             </div>
-    </div>
-    <div class="corpo-resposta col-md-12">
-        Para comprar moedas digitais é muito simples, e temos duas formas de faze-lo: por meio do Livro de Ordens ou pela Compra
-        Rápida. A diferença entre esses dois meios é que na Compra Rápida, você compra suas moedas pelo preço que as pessoas
-        estão vendendo no momento da compra, já no livro de ordem, você define o preço que você deseja comprar, dessa forma
-        sua ordem vai ficar ativa, até que o mercado atinja seu preço.
-    </div>
+        </div>
 
+        <div class="corpo-resposta col-md-12">
+            {{pergunta.textoResposta}}
+        </div>
+    </div>
 </div>
