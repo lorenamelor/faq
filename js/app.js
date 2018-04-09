@@ -9,9 +9,9 @@ app.config(function($routeProvider, $locationProvider){
         controller: "administradorController"
     })
 
-    .when("/respostas/:perguntaId",{
+    .when("/respostas/:id",{
         templateUrl: "views/respostas.html",
-        controller: "administradorController"
+        controller: "respostaController"
     })
 
     .otherwise({redirectTo:"/administrador"})

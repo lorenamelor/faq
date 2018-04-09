@@ -24,7 +24,7 @@
                             <div>
                                 <label for="recipient-name" class="control-label">Categoria</label>
                             </div>
-                            <div class="col-md-11 col-sm-11 col-xs-10 select-categorias" ng-init="listCategoria();">
+                            <div class="col-md-11 col-sm-11 col-xs-10 select-categorias" ng-init="listCategorias();">
                                 <select class="form-control" ng-model="pergunta.idCategoria" id="idCategoria" ng-required="true">
                                     <option ng-repeat="categoria in categorias track by $index" value="{{categoria.id}}">{{categoria.nome}}</option>
                                 </select>
@@ -83,7 +83,7 @@
 
     <!--Container de categorias-->
     <div class="container" ng-init="listCategoriasPerguntas(); listDuvida();">
-        <div class="box-container col-md-6" ng-repeat="cat in categoriasPerguntas | filter:busca track by $index">
+        <div class="box-container col-md-6" ng-repeat="cat in categoriasPerguntas | filter:busca track by $index"  ng-if="cat.conteudo.length > 0">
             <div class="box-categorias">
                 <div class="titulo-categoria col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-11 col-sm-11 col-xs-10">
@@ -95,14 +95,15 @@
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="perg in cat.conteudo | filter:busca track by $index">
                     <div class="col-md-11 col-sm-11 col-xs-10">
-                        <a href="/respostas/{{pergunta.id}}" ng-model="question">{{perg.textoPergunta}}</a>
+                        <a href="/respostas/{{perg.id}}" ng-model="question">{{perg.textoPergunta}}</a>
+                        {{perg}}
                     </div>
                     <div class="col-md-1 col-sm-1 col-xs-2  ">
                         <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(perg)"></i>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
     <!--Fim Container de categorias-->
 </div>

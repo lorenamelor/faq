@@ -1,5 +1,5 @@
-<div ng-init="listDuvida();">
-    <div ng-repeat="pergunta in duvidas track by $index" ng-if="pergunta.id == $routeParams">
+<div ng-init="loadResposta()">
+    <div >
         <div class="cabecalho-pergunta col-md-12">
             <div class="titulo-pergunta col-md-11">
                 {{pergunta.textoPergunta}}
