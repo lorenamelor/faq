@@ -49,13 +49,13 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
         }).catch()
     }
 
+
     $scope.apagarCategoria = function (categoria) {
         Admin.deleteCategoria(categoria).success(function () {
             var index = $scope.categoriasPerguntas.indexOf(categoria);
             $scope.categoriasPerguntas.splice(index, 1);
         })
     }
-
 
     $scope.listCategorias = function () {
         Admin.buscaCategorias().success(function (data) {

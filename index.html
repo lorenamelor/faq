@@ -36,6 +36,19 @@
 <body>
     <ng-view></ng-view>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+$.notify({
+    message: "teste"
+},{
+    type: 'success',
+    timer: 2000
+});
+
+})
+
+
+</script>
  <!--Angular-->
  <script src="lib/angular/angular.js"></script>
  <script src="lib/angular/angular-route.js"></script>
