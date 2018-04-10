@@ -4,7 +4,8 @@
     <div class="row">
         <div class="container adicionar-artigo">
             <button class="btn btn-padrao btn-artigo" data-toggle="modal" data-target="#modalArtigo">
-                <i class="glyphicon glyphicon-pencil"></i> Novo artigo</button>
+                <i class="glyphicon glyphicon-plus"></i> Novo artigo
+            </button>
         </div>
     </div>
 
@@ -24,9 +25,9 @@
                             <div>
                                 <label for="recipient-name" class="control-label">Categoria</label>
                             </div>
-                            <div class="col-md-11 col-sm-11 col-xs-10 select-categorias" ng-init="listCategorias();">
+                            <div class="col-md-11 col-sm-11 col-xs-10 select-categorias" ng-init="listCategoriasPerguntas();">
                                 <select class="form-control" ng-model="pergunta.idCategoria" id="idCategoria" ng-required="true">
-                                    <option ng-repeat="categoria in categorias track by $index" value="{{categoria.id}}">{{categoria.nome}}</option>
+                                    <option ng-repeat="categoria in categoriasPerguntas track by $index" value="{{categoria.idCategoria}}">{{categoria.nome}}</option>
                                 </select>
                             </div>
                             <div class="col-md-1 col-sm-1 col-xs-2">
@@ -82,28 +83,54 @@
     <!--fim Modal novo artigo-->
 
     <!--Container de categorias-->
-    <div class="container" ng-init="listCategoriasPerguntas(); listDuvida();">
-        <div class="box-container col-md-6" ng-repeat="cat in categoriasPerguntas | filter:busca track by $index"  ng-if="cat.conteudo.length > 0">
+    <div class="container" ng-init="listCategoriasPerguntas();">
+        <div class="box-container col-md-6" ng-repeat="cat in categoriasPerguntas | filter:busca track by $index">
             <div class="box-categorias">
                 <div class="titulo-categoria col-md-12 col-sm-12 col-xs-12">
-                    <div class="col-md-11 col-sm-11 col-xs-10">
+                    <div class="col-md-10 col-sm-10 col-xs-9">
                         {{cat.nome}}
                     </div>
-                    <div class="col-md-1 col-sm-1 col-xs-2">
-                        <i class="glyphicon glyphicon-remove remove-categoria" ng-click="apagarCategoria(cat)"></i>
+                    <div class="col-md-2 col-sm-2 col-xs-4 icones-gerenciar">
+                        <i class="glyphicon glyphicon-pencil" ng-click="editarCategoria(cat)"></i>
+                        <i class="glyphicon glyphicon-remove" ng-click="apagarCategoria(cat)"></i>
                     </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 corpo-categoria" ng-repeat="perg in cat.conteudo | filter:busca track by $index">
-                    <div class="col-md-11 col-sm-11 col-xs-10">
+                    <div class="col-md-10 col-sm-10 col-xs-9">
                         <a href="/respostas/{{perg.id}}" ng-model="question">{{perg.textoPergunta}}</a>
-                        {{perg}}
                     </div>
-                    <div class="col-md-1 col-sm-1 col-xs-2  ">
+                    <div class="col-md-2 col-sm-2 col-xs-4 icones-gerenciar">
+                        <i class="glyphicon glyphicon-pencil" ng-click="editarDuvida(perg)"></i>
                         <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(perg)"></i>
                     </div>
+
+                    <!--Modal exluir pergunta-->
+                    <div class="modal fade bs-example-modal-sm" id="modalExcluirPergunta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-exclusao">Deseja realmente apagar esta pergunta ?</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-padrao" ng-click="apagarDuvida(perg)">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Fim Modal exluir pergunta-->
+
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
     <!--Fim Container de categorias-->
+
+    <!--Modais de exclusão-->
+
+
+
 </div>

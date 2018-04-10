@@ -21,7 +21,7 @@ app.service("Admin", function ($http, $routeParams) {
     }
 
     this.deleteCategoria = function(categoria){
-        return $http.delete('http://172.16.10.111:4000/conteudo/deleteCategoria/' + categoria.id)
+        return $http.delete('http://172.16.10.111:4000/conteudo/deleteCategoria/' + categoria.idCategoria)
     }
 
     this.buscaCategoriaPerguntas = function(){

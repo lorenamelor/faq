@@ -44,9 +44,10 @@ h1 {
     margin: 40px 0 40px;
 }
 
+
 .btn-padrao {
     background-color: #0D5E79;
-    color: #fff;
+    color: #fff !important;
 }
 
 a {
@@ -76,20 +77,17 @@ a:active {
     width: 134px;
     height: 40px;
     float: right;
-    
 }
 
-
 @media only screen and (max-width: 600px) {
-    .adicionar-artigo{
-       text-align: center;
+    .adicionar-artigo {
+        text-align: center;
     }
-
     .btn-padrao.btn-artigo {
         float: none;
     }
-
 }
+
 
 /* box de categorias */
 
@@ -104,7 +102,7 @@ a:active {
 .box-categorias .titulo-categoria {
     color: #fff;
     font-size: 20px;
-    padding: 7px;
+    padding: 8px 0px 9px 20px;
     text-transform: uppercase;
     background-image: -webkit-linear-gradient(left, #233f51, #007292);
     background-image: -moz-linear-gradient(left, #233f51, #007292);
@@ -116,21 +114,26 @@ a:active {
 .box-categorias .corpo-categoria {
     font-size: 16px;
     color: #484848;
-    padding: 7px;
-    padding: 8px 25px 8px;
+    padding: 8px 0px 9px 20px;
     border-top: 1px solid #dbd8d8;
 }
 
 .glyphicon-remove {
     color: #EA4F4F;
     cursor: pointer;
+}
+
+.glyphicon-pencil{
+    color: #4f91e4;
+    cursor: pointer;
+}
+
+.icones-gerenciar{
+    text-align: right;
     vertical-align: middle;
 }
 
-.glyphicon-remove.remove-categoria{
-    color: #333333 !important;
-}
-/*Modais adicionar*/
+/*Modais*/
 
 .select-categorias {
     padding-left: 0px !important;
@@ -143,22 +146,29 @@ a:active {
     width: 30px;
 }
 
+.modal-exclusao {
+    line-height: 1.42857143;
+    text-align: center;
+    margin: 14px;
+}
+
 /*Pagina de resposta*/
 
-.cabecalho-pergunta{
+.cabecalho-pergunta {
     border-bottom: 1px solid #dedede;
     padding: 20px;
 }
-.titulo-pergunta{
+
+.titulo-pergunta {
     font-size: 30px;
 }
 
-.corpo-resposta{
+.corpo-resposta {
     font-size: 18px;
     color: #878787;
     padding: 20px 60px;
 }
 
-.btn-padrao.btn-editar-pergunta{
+.btn-padrao.btn-editar-pergunta {
     font-size: 16px;
 }

@@ -8,17 +8,19 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
         })
     }
 
-  
-    $scope.adicionarDuvida = function (pergunta) {
-        Admin.addPergunta(pergunta).success(function (data) {
-            $scope.limparForm();
-            $('#modalArtigo').modal('hide');
 
+    $scope.adicionarDuvida = function (pergunta) {
+        console.log(pergunta);
+        console.log($scope.categoriasPerguntas);
+        Admin.addPergunta(pergunta).success(function (data) {
             for (var i = 0; i < $scope.categoriasPerguntas.length; i++) {
                 if ($scope.categoriasPerguntas[i].idCategoria == pergunta.idCategoria) {
                     $scope.categoriasPerguntas[i].conteudo.push(angular.copy(pergunta));
                 }
             }
+            $scope.limparForm();
+            $('#modalArtigo').modal('hide');
+            console.log($scope.categoriasPerguntas);
         })
     }
 
@@ -31,6 +33,7 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
                     $scope.categoriasPerguntas[i].conteudo.splice(index, 1);
                 }
             }
+            $('#modalExcluirPergunta').modal('hide');
         })
     }
 
@@ -51,10 +54,13 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
 
 
     $scope.apagarCategoria = function (categoria) {
-        Admin.deleteCategoria(categoria).success(function () {
-            var index = $scope.categoriasPerguntas.indexOf(categoria);
-            $scope.categoriasPerguntas.splice(index, 1);
-        })
+        console.log(categoria);
+        if (categoria.conteudo == "") {
+            Admin.deleteCategoria(categoria).success(function () {
+                var index = $scope.categoriasPerguntas.indexOf(categoria);
+                $scope.categoriasPerguntas.splice(index, 1);
+            })
+        }
     }
 
     $scope.listCategorias = function () {
