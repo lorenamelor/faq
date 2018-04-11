@@ -1,6 +1,8 @@
-app.controller("respostaController", function ($scope, $routeParams) {
-    $scope.loadResposta=function(){
-        console.log($routeParams.id);  
-    }
+app.controller("respostaController", function ($scope, $routeParams,Admin) {
 
+    $scope.listPerguntas = function () {
+        Admin.buscaPergunta().success(function (data) {
+            $scope.perguntas = data[0];
+        })
+    }
 })
