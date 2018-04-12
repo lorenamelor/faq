@@ -97,7 +97,7 @@
                         <a href="/respostas/{{perg.id}}" ng-model="question">{{perg.textoPergunta}}</a>
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-4 icones-gerenciar">
-                        <i class="glyphicon glyphicon-pencil" ng-click="editarDuvida(perg, perg.idCategoria)"></i>
+                        <i class="glyphicon glyphicon-pencil" ng-click="modalEditaDuvida(perg, cat)"></i>
                         <i class="glyphicon glyphicon-remove" ng-click="apagarDuvida(perg, cat)"></i>
                     </div>
 
@@ -121,7 +121,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-padrao" id="excluirPerg" >Excluir</button>
+                    <button type="button" class="btn btn-padrao" id="excluirPerg">Excluir</button>
                 </div>
             </div>
         </div>
@@ -165,7 +165,7 @@
                                 <label for="recipient-name" class="control-label">Categoria</label>
                             </div>
                             <div class="col-md-11 col-sm-11 col-xs-10 select-categorias" ng-init="listCategoriasPerguntas();">
-                                <select class="form-control" ng-model="editaPergunta.idCategoria" id="idCategoria" ng-required="true" ng-options="categoria as categoria.nome for categoria in categoriasPerguntas track by categoria.id">
+                                <select class="form-control" ng-model="editaPergunta.categoria" id="idCategoria" ng-required="true" ng-options="categoria as categoria.nome for categoria in categoriasPerguntas track by categoria.idCategoria">
                                 </select>
                             </div>
                             <div class="col-md-1 col-sm-1 col-xs-2">
@@ -185,13 +185,13 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-padrao" id='editPerg' ng-disabled="editaDuvida.$invalid" ng-click="editP(editaPergunta)">Editar</button>
+                    <button type="button" class="btn btn-padrao" id='editPerg' ng-disabled="editaDuvida.$invalid" ng-click="salvaEditaDuvida(editaPergunta)">Editar</button>
                 </div>
             </div>
         </div>
     </div>
 
-     <!--Fim modal editar artigo-->
+    <!--Fim modal editar artigo-->
 
 
 

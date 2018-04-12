@@ -39,29 +39,40 @@ app.controller("administradorController", function ($scope, Admin, $routeParams)
     }
 
 
-    $scope.editP = function (novaPergunta) {
 
-        // var indexCat = $scope.categoriasPerguntas.indexOf();
-        // var indexPerg = $scope.categoriasPerguntas.conteudo[indexCat].indexOf(novaPergunta);
-        // console.log(indexPerg);
 
-        // Admin.editarPergunta(novaPergunta).success(function () {
-        //     console.log('ok');
-        //     $('#modalEditarArtigo').modal('hide');  
-        // })
-    }
-
-    $scope.editarDuvida = function (pergunta, cat) {
-
-        console.log(cat);
-        // var indexCat = $scope.categoriasPerguntas.indexOf(cat);
-        // var indexPerg = $scope.categoriasPerguntas.conteudo[indexCat].indexOf(pergunta);
-        // console.log(indexPerg);
+    $scope.modalEditaDuvida = function (pergunta, cat) {
 
         $scope.editaPergunta = angular.copy(pergunta);
         $('#modalEditarArtigo').modal('show');
 
+        var indexCat = $scope.categoriasPerguntas.indexOf(cat);
+        var indexPerg = $scope.categoriasPerguntas[indexCat].conteudo.indexOf(pergunta);
+        
+
+        $scope.salvaEditaDuvida = function (novaPergunta) {
+
+            novaPergunta.idCategoria = novaPergunta.categoria.idCategoria
+
+            if (pergunta.idCategoria == novaPergunta.idCategoria) {
+                $scope.categoriasPerguntas[indexCat].conteudo[indexPerg] = novaPergunta;
+            } else {
+                for (var i = 0; i < $scope.categoriasPerguntas.length; i++) {
+                    if ($scope.categoriasPerguntas[i].idCategoria == novaPergunta.idCategoria) {
+                        $scope.categoriasPerguntas[indexCat].conteudo.splice(indexPerg, 1);
+                        $scope.categoriasPerguntas[i].conteudo.push(novaPergunta);
+                    }
+                }
+            }
+
+            Admin.editarPergunta(novaPergunta).success(function () {
+                $('#modalEditarArtigo').modal('hide');
+            })
+        }
+
     }
+
+
 
     /*Categorias*/
     $scope.adicionarCategoria = function (categoria) {

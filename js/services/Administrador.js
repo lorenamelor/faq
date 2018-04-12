@@ -24,8 +24,14 @@ app.service("Admin", function ($http, $routeParams) {
         return $http.get('http://172.16.10.111:4000/conteudo/searchConteudoById/' + $routeParams.id)
     }
 
-    this.editarPergunta = function(pergunta){
-        return $http.post('http://172.16.10.111:4000/conteudo/updateConteudo')
+    this.editarPergunta = function (novaPergunta) {
+        return $http.post('http://172.16.10.111:4000/conteudo/updateConteudo', {
+            textoPergunta: novaPergunta.textoPergunta,
+            textoResposta: novaPergunta.textoResposta,
+            id: novaPergunta.id,
+            idCategoria: novaPergunta.idCategoria
+        })
+
     }
 
 })
